@@ -28,7 +28,7 @@ public class BizesService {
     public BizesResponseDTO findBizesByMapUrl(String mapUrl){
         String placeNumber = UrlParamExtractor.getParamFromUrl(mapUrl, PLACE);
         BizesEntity bizesEntity = bizesRepsitory.findByPlaceNumber(placeNumber).orElse(null);
-        return bizesConverter.toBizesResponseDTO(bizesEntity);
+        return bizesConverter.toBizesResponseDTO(mapUrl, bizesEntity);
     }
     @Transactional
     public void registerBizes(SubscribeDTO subscribeDTO){
