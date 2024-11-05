@@ -11,14 +11,13 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Data
 public class SubscribeId implements Serializable {
-    @Column(name = "bizes_number")
-    private String bizesNumber;
+    @Column(name = "place_number")
+    private String placeNumber;
     @Column(name = "user_name")
     private String userName;
-
     @Builder
-    public SubscribeId(String bizesNumber, String userName){
-        this.bizesNumber = bizesNumber;
+    SubscribeId(String placeNumber, String userName){
+        this.placeNumber = placeNumber;
         this.userName = userName;
     }
 }

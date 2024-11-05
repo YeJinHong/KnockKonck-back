@@ -15,10 +15,14 @@ public class SubscribeEntity {
     @EmbeddedId
     private SubscribeId subscribeId;
 
+    private String originMapUrl;
     @Builder
-    public SubscribeEntity(String bizesNumber, String userName){
+    SubscribeEntity(String placeNumber, String userName, String originMapUrl){
         this.subscribeId = SubscribeId.builder()
-                .bizesNumber(bizesNumber)
-                .userName(userName).build();
+                .placeNumber(placeNumber)
+                .userName(userName)
+                .build();
+        this.originMapUrl = originMapUrl;
     }
+
 }
