@@ -15,6 +15,9 @@ public class BizesEntity {
     @Column(name = "bizes_number", nullable = false, unique = true)
     private String bizesNumber;
 
+    @Column(name = "place_number", nullable = false, unique = true)
+    private String placeNumber;
+
     @Column(name = "name", nullable = false, length = 100)
     private String bizesName;
 
@@ -22,10 +25,11 @@ public class BizesEntity {
     private String address;
 
     @Builder
-    public BizesEntity(String bizesNumber, String bizesName, String address){
-        this.bizesNumber = bizesNumber;
+    BizesEntity(String bizesNumber, String placeNumber, String bizesName, String address){
         this.bizesName = bizesName;
+        this.bizesNumber = bizesNumber;
         this.address = address;
+        this.placeNumber = placeNumber;
     }
 
 }
