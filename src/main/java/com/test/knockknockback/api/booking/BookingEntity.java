@@ -1,5 +1,6 @@
 package com.test.knockknockback.api.booking;
 
+import com.test.knockknockback.api.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "booking")
-public class BookingEntity {
+public class BookingEntity extends BaseEntity {
     @EmbeddedId
     private BookingId bookingId;
 

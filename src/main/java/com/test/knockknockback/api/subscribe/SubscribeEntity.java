@@ -1,6 +1,7 @@
 package com.test.knockknockback.api.subscribe;
 
 import com.test.knockknockback.api.bizes.BizesEntity;
+import com.test.knockknockback.api.common.BaseEntity;
 import com.test.knockknockback.api.item.ItemEntity;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "subscribe")
-public class SubscribeEntity {
+public class SubscribeEntity extends BaseEntity {
     @EmbeddedId
     private SubscribeId subscribeId;
     @Builder

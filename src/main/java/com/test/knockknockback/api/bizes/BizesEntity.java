@@ -1,5 +1,6 @@
 package com.test.knockknockback.api.bizes;
 
+import com.test.knockknockback.api.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Table(name = "bizes")
-public class BizesEntity {
+public class BizesEntity extends BaseEntity {
 
     @Id
     @GeneratedValue
