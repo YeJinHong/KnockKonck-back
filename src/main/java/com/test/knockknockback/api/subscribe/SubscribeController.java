@@ -21,8 +21,6 @@ public class SubscribeController {
             @RequestBody SubscribeDTO subscribeDTO
     ) {
         subscribeService.registerSubs(subscribeDTO);
-//      bize정보가 없다면 등록한다.
-//        bizesService.registerBizes(subscribeDTO);
         return null;
     }
 
