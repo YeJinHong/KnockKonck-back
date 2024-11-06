@@ -20,7 +20,7 @@ public class BookingId implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_number")
-    private ItemEntity itemEntity;
+    private ItemEntity item;
 
     @Column(name = "startDate")
     private String startDate;

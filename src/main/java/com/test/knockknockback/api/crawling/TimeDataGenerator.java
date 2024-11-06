@@ -21,20 +21,21 @@ public class TimeDataGenerator {
 
         boolean isAfternoon = false;
         for(WebElement we : timeListElement){
+
             String timeText = we.getText();
             String timeClass = we.getAttribute("class");
             if(timeText.contains("오후")) isAfternoon = true;
 
+            if(!timeClass.contains("disabled")) continue;
+
             int hours = Integer.parseInt(timeText.replaceAll("[^0-9]", ""));
+            if(isAfternoon) hours = (hours%12 + 12); // 12시간제에서 24시간제로 변경
             BookingType type = timeClass.contains("half") ? BookingType.HALF : BookingType.FULL;
-            Boolean isBookable = !timeClass.contains("disabled");
 
             bookingList.add(
                     BookingDTO.builder()
                             .crawlingTimeRequestDTO(crawlingTimeRequestDTO)
                             .hours(hours)
-                            .isAfternoon(isAfternoon)
-                            .isBookable(isBookable)
                             .type(type)
                             .build()
             );

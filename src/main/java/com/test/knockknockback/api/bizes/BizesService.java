@@ -20,6 +20,7 @@ public class BizesService {
     }
     public void registerBizes(BizesItemSO bizesItemSO){
         BizesEntity bizesEntity = BizesEntity.builder()
+                .originMapUrl(bizesItemSO.getOriginMapUrl())
                 .placeNumber(bizesItemSO.getPlaceNumber())
                 .bizesNumber(bizesItemSO.getBizesNumber())
                 .bizesName(bizesItemSO.getBizesName())

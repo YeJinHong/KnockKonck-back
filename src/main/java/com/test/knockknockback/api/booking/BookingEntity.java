@@ -15,12 +15,6 @@ public class BookingEntity {
     @EmbeddedId
     private BookingId bookingId;
 
-    @Column(name = "is_afternoon")
-    private Boolean isAfternoon;
-
-    @Column(name = "is_bookable")
-    private Boolean isBookable;
-
     @Column(name = "type")
     private BookingType type;
 }

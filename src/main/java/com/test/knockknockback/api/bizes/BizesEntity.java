@@ -12,11 +12,17 @@ import lombok.NoArgsConstructor;
 public class BizesEntity {
 
     @Id
-    @Column(name = "bizes_number", nullable = false, unique = true)
-    private String bizesNumber;
+    @GeneratedValue
+    private Long id;
+
+    @Column(name = "originMapUrl", nullable = false, unique = true)
+    private String originMapUrl;
 
     @Column(name = "place_number", nullable = false, unique = true)
     private String placeNumber;
+
+    @Column(name = "bizes_number", nullable = false, unique = true)
+    private String bizesNumber;
 
     @Column(name = "name", nullable = false, length = 100)
     private String bizesName;
@@ -25,7 +31,8 @@ public class BizesEntity {
     private String address;
 
     @Builder
-    BizesEntity(String bizesNumber, String placeNumber, String bizesName, String address){
+    BizesEntity(String originMapUrl, String bizesNumber, String placeNumber, String bizesName, String address){
+        this.originMapUrl = originMapUrl;
         this.bizesName = bizesName;
         this.bizesNumber = bizesNumber;
         this.address = address;

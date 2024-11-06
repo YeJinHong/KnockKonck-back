@@ -12,18 +12,14 @@ public class BookingDTO {
     private String itemNumber;
     private String startDate;
     private Integer hours;
-    private Boolean isAfternoon;
-    private Boolean isBookable;
     private BookingType type;
 
     @Builder
-    private BookingDTO(CrawlingTimeRequestDTO crawlingTimeRequestDTO, int hours, Boolean isAfternoon, Boolean isBookable, BookingType type){
+    private BookingDTO(CrawlingTimeRequestDTO crawlingTimeRequestDTO, int hours, BookingType type){
         this.bizesNumber = crawlingTimeRequestDTO.getBizesNumber();
         this.itemNumber = crawlingTimeRequestDTO.getItemNumber();
         this.startDate = crawlingTimeRequestDTO.getStartDate();
         this.hours = hours;
-        this.isAfternoon = isAfternoon;
-        this.isBookable = isBookable;
         this.type = type;
     }
 

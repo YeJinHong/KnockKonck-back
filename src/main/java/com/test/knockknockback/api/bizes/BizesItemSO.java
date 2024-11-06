@@ -10,13 +10,15 @@ import java.util.List;
 
 @Data
 public class BizesItemSO {
+    private String originMapUrl;
     private String placeNumber;
     private String bizesNumber;
     private String bizesName;
     private String address;
     private List<ItemSO> itemList;
 
-    public BizesItemSO(String placeNumber, WebDriver driver){
+    public BizesItemSO(String originMapUrl, String placeNumber, WebDriver driver){
+        this.originMapUrl = originMapUrl;
         this.placeNumber = placeNumber;
         List<WebElement> elementList = driver.findElements(By.cssSelector(".yxkiA"));
         WebElement element = elementList.get(2).findElement(By.cssSelector("a"));

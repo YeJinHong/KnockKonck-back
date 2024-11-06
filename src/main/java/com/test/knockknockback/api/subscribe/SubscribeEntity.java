@@ -1,5 +1,7 @@
 package com.test.knockknockback.api.subscribe;
 
+import com.test.knockknockback.api.bizes.BizesEntity;
+import com.test.knockknockback.api.item.ItemEntity;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -14,15 +16,13 @@ import lombok.NoArgsConstructor;
 public class SubscribeEntity {
     @EmbeddedId
     private SubscribeId subscribeId;
-
-    private String originMapUrl;
     @Builder
-    SubscribeEntity(String placeNumber, String userName, String originMapUrl){
+    SubscribeEntity(BizesEntity bizes, ItemEntity item, String userName){
         this.subscribeId = SubscribeId.builder()
-                .placeNumber(placeNumber)
+                .bizes(bizes)
+                .item(item)
                 .userName(userName)
                 .build();
-        this.originMapUrl = originMapUrl;
     }
 
 }

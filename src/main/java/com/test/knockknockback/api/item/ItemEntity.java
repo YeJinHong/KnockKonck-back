@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 public class ItemEntity {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
     @Column(name = "item_number", nullable = false)
     private String itemNumber;
 
@@ -41,4 +44,5 @@ public class ItemEntity {
         this.bizes = bizes;
         this.bookingUrl = bookingUrl;
     }
+
 }
