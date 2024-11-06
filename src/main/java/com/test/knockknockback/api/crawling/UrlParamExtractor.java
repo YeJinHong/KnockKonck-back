@@ -10,11 +10,16 @@ public class UrlParamExtractor {
 
     private static final String BIZES = "bizes";
     private static final String ITEMS = "items";
+    private static final String PLACE = "place";
 
     public static String getParamFromUrl(String url, String paramName){
         StringTokenizer st = new StringTokenizer(url.substring(url.indexOf(paramName)), "[/?=&]");
         st.nextToken();
         return st.nextToken();
+    }
+
+    public static String getPlaceNumberFromUrl(String url){
+        return getParamFromUrl(url, PLACE);
     }
 
     public static String getBizesNumberFromUrl(String url){
