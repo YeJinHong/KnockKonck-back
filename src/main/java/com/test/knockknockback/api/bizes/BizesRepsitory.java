@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface BizesRepsitory extends JpaRepository<BizesEntity, String> {
     @Query("select b from BizesEntity b where b.placeNumber = :placeNumber")
     Optional<BizesEntity> findByPlaceNumber(String placeNumber);
+
+    @Query("select b from BizesEntity b where b.bizesNumber = :bizesNumber")
+    Optional<BizesEntity> findByBizesNumber(String bizesNumber);
 }
