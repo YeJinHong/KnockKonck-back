@@ -3,10 +3,7 @@ package com.test.knockknockback.api.subscribe;
 import com.test.knockknockback.api.bizes.BizesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -15,12 +12,19 @@ public class SubscribeController {
 
     private final SubscribeService subscribeService;
 
-    private final BizesService bizesService;
     @PostMapping()
     public ResponseEntity<?> registerSubs(
             @RequestBody SubscribeDTO subscribeDTO
     ) {
         subscribeService.registerSubs(subscribeDTO);
+        return null;
+    }
+
+    @DeleteMapping("/{subId}")
+    public ResponseEntity<?> unsubscribe(
+            @PathVariable(name = "subId") Long subId
+    ){
+        subscribeService.unsubscribe(subId);
         return null;
     }
 

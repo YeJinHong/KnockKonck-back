@@ -3,9 +3,7 @@ package com.test.knockknockback.api.subscribe;
 import com.test.knockknockback.api.bizes.BizesEntity;
 import com.test.knockknockback.api.common.BaseEntity;
 import com.test.knockknockback.api.item.ItemEntity;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "subscribe")
 public class SubscribeEntity extends BaseEntity {
+
+    @GeneratedValue
+    @Column(unique = true)
+    private Long id;
+
     @EmbeddedId
     private SubscribeId subscribeId;
     @Builder

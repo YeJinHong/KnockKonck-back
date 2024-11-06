@@ -26,4 +26,9 @@ public class SubscribeService {
                         .build()
         );
     }
+
+    public void unsubscribe(Long subId){
+        // TODO : 요청자와 구독정보 소유자 일치여부 확인 로직 필요
+        subscribeRepository.deleteBySubId(subId);
+    }
 }
