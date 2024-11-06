@@ -23,7 +23,8 @@ public class CrawlingService {
 
     final String TIME_QUERY = ".calendar_time_selector .time_item";
     final String IFRAME_QUERY = "iframe#entryIframe";
-    final String MAINTAB_QUERY = ".place_fixed_maintab .flicking-camera a";
+
+    final String BOOKING_TAB_QUERY = ".place_section .UoIF_ .yxkiA > a";
     final String PLACE_CONTENT_LIST_QUERY = ".place_section_content > ul > li";
     final String ITEM_NAME_QUERY = ".tkK1g .QTWaA .lsthu";
     final String PRICE_LIST_QUERY = ".tkK1g .CTesk em";
@@ -60,17 +61,15 @@ public class CrawlingService {
         driver.switchTo().frame(driver.findElement(By.cssSelector(IFRAME_QUERY)));
 
         // 1. 사업체 정보 추출 - bizesNumber는 아이템 정보에서 추가
-        BizesItemSO bizesItemSO = new BizesItemSO(driver);
+        BizesItemSO bizesItemSO = new BizesItemSO(UrlParamExtractor.getPlaceNumberFromUrl(mapUrl), driver);
 
-        List<WebElement> maintabElements = driver.findElements(By.cssSelector(MAINTAB_QUERY));
-
-        // 세번째 메인탭(예약)을 클릭한다.
-        maintabElements.get(2).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        // 예약 버튼을 클릭한다.
+        driver.findElement(By.cssSelector(BOOKING_TAB_QUERY)).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
 
         // 현재 프레임에서 상위 프레임으로 이동한다
         driver.switchTo().defaultContent();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
 
         // 상세정보 프레임에서 예약 정보가 들어있는 곳으로 이동한다.
         driver.switchTo().frame(driver.findElement(By.cssSelector(IFRAME_QUERY)));
@@ -84,8 +83,8 @@ public class CrawlingService {
             // 주의 : className은 암호화되어 있어 추후 변경의 여지가 있음
             String itemName = we.findElement(By.cssSelector(ITEM_NAME_QUERY)).getText();
             List<WebElement> priceList = we.findElements(By.cssSelector(PRICE_LIST_QUERY));
-            Integer lowPrice = Integer.parseInt(priceList.get(0).getText().replaceAll(",", ""));
-            Integer highPrice = Integer.parseInt(priceList.get(1).getText().replaceAll(",", ""));
+            String lowPrice = priceList.get(0).getText();
+            String highPrice = priceList.get(1).getText();
 
             String itemBookingUrl = (we.findElement(By.cssSelector(ITEM_BOOKING_URL_QUERY))).getAttribute("href");
 
