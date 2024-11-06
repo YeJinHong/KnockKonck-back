@@ -20,10 +20,10 @@ public class ItemEntity {
     private String name;
 
     @Column(name = "low_price")
-    private Integer lowPrice;
+    private String lowPrice;
 
     @Column(name = "high_price")
-    private Integer highPrice;
+    private String highPrice;
 
     @Column(name = "booking_url")
     private String bookingUrl;
@@ -33,7 +33,7 @@ public class ItemEntity {
     private BizesEntity bizes;
 
     @Builder
-    public ItemEntity(String itemNumber, String name, Integer lowPrice, Integer highPrice, String bookingUrl, BizesEntity bizes){
+    public ItemEntity(String itemNumber, String name, String lowPrice, String highPrice, String bookingUrl, BizesEntity bizes){
         this.itemNumber = itemNumber;
         this.name = name;
         this.lowPrice = lowPrice;
