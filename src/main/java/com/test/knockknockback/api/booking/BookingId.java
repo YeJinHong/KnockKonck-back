@@ -16,11 +16,11 @@ import java.io.Serializable;
 @Data
 public class BookingId implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bizes_number")
+    @JoinColumn(name = "bizes_number", referencedColumnName = "bizes_number")
     private BizesEntity bizes;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_number")
+    @JoinColumn(name = "item_number", referencedColumnName = "item_number")
     private ItemEntity item;
 
     @Column(name = "startDate")

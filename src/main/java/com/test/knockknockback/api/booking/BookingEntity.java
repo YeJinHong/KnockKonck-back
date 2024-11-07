@@ -1,10 +1,7 @@
 package com.test.knockknockback.api.booking;
 
 import com.test.knockknockback.api.common.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,7 @@ public class BookingEntity extends BaseEntity {
     private BookingId bookingId;
 
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private BookingType type;
 
     @Builder
