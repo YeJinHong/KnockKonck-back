@@ -1,9 +1,11 @@
 package com.test.knockknockback.api.subscribe;
 
-import com.test.knockknockback.api.bizes.BizesService;
+import com.test.knockknockback.api.subscribe.dto.SubscribeResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,6 +28,13 @@ public class SubscribeController {
     ){
         subscribeService.unsubscribe(subId);
         return null;
+    }
+
+    @GetMapping
+    public List<SubscribeResponseDTO> getSubscribeList(
+            @RequestParam String userName
+    ){
+        return subscribeService.getSubscribeList(userName);
     }
 
 }
