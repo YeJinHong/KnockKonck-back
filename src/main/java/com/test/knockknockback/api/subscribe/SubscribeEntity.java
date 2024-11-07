@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "subscribe")
 public class SubscribeEntity extends BaseEntity {
 
+    @Id
     @GeneratedValue
-    @Column(unique = true)
     private Long id;
 
-    @EmbeddedId
+//    @EmbeddedId
     private SubscribeId subscribeId;
     @Builder
     SubscribeEntity(BizesEntity bizes, ItemEntity item, String userName){
