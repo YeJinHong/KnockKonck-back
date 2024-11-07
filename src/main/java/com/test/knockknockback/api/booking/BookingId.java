@@ -3,6 +3,7 @@ package com.test.knockknockback.api.booking;
 import com.test.knockknockback.api.bizes.BizesEntity;
 import com.test.knockknockback.api.item.ItemEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,12 @@ public class BookingId implements Serializable {
 
     @Column(name = "hours")
     private Integer hours;
+
+    @Builder
+    public BookingId(BizesEntity bizes, ItemEntity item, String startDate, Integer hours) {
+        this.bizes = bizes;
+        this.item = item;
+        this.startDate = startDate;
+        this.hours = hours;
+    }
 }

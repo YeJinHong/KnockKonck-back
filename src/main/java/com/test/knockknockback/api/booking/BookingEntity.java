@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,4 +19,10 @@ public class BookingEntity extends BaseEntity {
 
     @Column(name = "type")
     private BookingType type;
+
+    @Builder
+    private BookingEntity(BookingId bookingId, BookingType type){
+        this.bookingId = bookingId;
+        this.type = type;
+    }
 }

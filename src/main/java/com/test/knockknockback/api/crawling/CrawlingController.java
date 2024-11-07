@@ -1,6 +1,8 @@
 package com.test.knockknockback.api.crawling;
 
 import com.test.knockknockback.api.booking.BookingDTO;
+import com.test.knockknockback.api.booking.BookingService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CrawlingController {
 
     private final CrawlingService crawlingService;
+    private final BookingService bookingService;
 
     // 크롤링 정상 동작 확인 완료
     @PatchMapping("/time-data")
@@ -25,10 +28,11 @@ public class CrawlingController {
         // TODO : 최근 업데이트 시간 비교
 
         List<BookingDTO> bookingList = crawlingService.getBookingList(crawlingTimeRequestDTO);
-        System.out.println("Controller : time Data load 완료");
-        System.out.println(bookingList);
 
-        // TODO : DB 업데이트
+        for(BookingDTO bookingDTO : bookingList) {
+            bookingService.saveBookingTimeData(bookingDTO);
+        }
+
         return null;
     }
 

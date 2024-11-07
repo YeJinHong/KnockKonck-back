@@ -23,7 +23,6 @@ public class CrawlingService {
 
     final String TIME_QUERY = ".calendar_time_selector .time_item";
     final String IFRAME_QUERY = "iframe#entryIframe";
-
     final String BOOKING_TAB_QUERY = ".place_section .UoIF_ .yxkiA > a";
     final String PLACE_CONTENT_LIST_QUERY = ".place_section_content > ul > li";
     final String ITEM_NAME_QUERY = ".tkK1g .QTWaA .lsthu";
@@ -61,7 +60,7 @@ public class CrawlingService {
         driver.switchTo().frame(driver.findElement(By.cssSelector(IFRAME_QUERY)));
 
         // 1. 사업체 정보 추출 - bizesNumber는 아이템 정보에서 추가
-        BizesItemSO bizesItemSO = new BizesItemSO(UrlParamExtractor.getPlaceNumberFromUrl(mapUrl), driver);
+        BizesItemSO bizesItemSO = new BizesItemSO(mapUrl, UrlParamExtractor.getPlaceNumberFromUrl(mapUrl), driver);
 
         // 예약 버튼을 클릭한다.
         driver.findElement(By.cssSelector(BOOKING_TAB_QUERY)).click();
