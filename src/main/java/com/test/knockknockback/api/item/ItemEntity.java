@@ -17,7 +17,7 @@ public class ItemEntity extends BaseEntity {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "item_number", nullable = false)
+    @Column(name = "item_number", unique = true, nullable = false)
     private String itemNumber;
 
     @Column(name = "name", nullable = false, length = 100)

@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, String> {
-    @Query("select i.bookingUrl from ItemEntity i where i.itemNumber = :itemNumber")
-    String findBookingUrlByItemNumber(String itemNumber);
+    @Query("select i.bookingUrl from ItemEntity i where i.bizes.bizesNumber = :bizesNumber and i.itemNumber = :itemNumber")
+    String findBookingUrlByBizesNumberAndItemNumber(String bizesNumber, String itemNumber);
 
     @Query("select i from ItemEntity i where i.itemNumber = :itemNumber")
     Optional<ItemEntity> findByItemNumber(String itemNumber);
