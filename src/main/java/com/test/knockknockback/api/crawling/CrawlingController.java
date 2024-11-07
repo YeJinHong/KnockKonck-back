@@ -27,11 +27,8 @@ public class CrawlingController {
     ){
         // TODO : 최근 업데이트 시간 비교
 
-        List<BookingDTO> bookingList = crawlingService.getBookingList(crawlingTimeRequestDTO);
-
-        for(BookingDTO bookingDTO : bookingList) {
-            bookingService.saveBookingTimeData(bookingDTO);
-        }
+        BookingDTO bookingDTO = crawlingService.getBookingTimeData(crawlingTimeRequestDTO);
+        bookingService.saveBookingTimeData(bookingDTO);
 
         return null;
     }

@@ -34,21 +34,23 @@ public class CrawlingService {
         this.itemRepository = itemRepository;
     }
 
-    public List<BookingDTO> getBookingList(CrawlingTimeRequestDTO crawlingTimeRequestDTO){
+    public BookingDTO getBookingTimeData(CrawlingTimeRequestDTO crawlingTimeRequestDTO){
         WebDriver driver = WebDriverUtil.getChromeDriver();
 
-        String bookingItemUrl = itemRepository.findBookingUrlByItemNumber(crawlingTimeRequestDTO.getItemNumber());
+        String bookingItemUrl = itemRepository.findBookingUrlByBizesNumberAndItemNumber(
+                crawlingTimeRequestDTO.getBizesNumber(), crawlingTimeRequestDTO.getItemNumber()
+        );
 
-        driver.get(bookingItemUrl);
+        driver.get(bookingItemUrl + "?startDate="+crawlingTimeRequestDTO.getStartDate());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         List<WebElement> timeListElement = driver.findElements(By.cssSelector(TIME_QUERY));
 
-        List<BookingDTO> bookingList = timeDataGenerator.generateBookingList(crawlingTimeRequestDTO, timeListElement);
+        BookingDTO bookingTimeData = timeDataGenerator.generateBookingTimeData(crawlingTimeRequestDTO, timeListElement);
 
         WebDriverUtil.quit(driver);
 
-        return bookingList;
+        return bookingTimeData;
     }
 
     @Transactional

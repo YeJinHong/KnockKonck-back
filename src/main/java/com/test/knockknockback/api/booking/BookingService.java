@@ -20,21 +20,26 @@ public class BookingService {
     public void saveBookingTimeData(BookingDTO bookingDTO){
         BizesEntity bizes = bizesRepsitory.findByBizesNumber(bookingDTO.getBizesNumber()).orElse(null);
         ItemEntity item = itemRepository.findByItemNumber(bookingDTO.getItemNumber()).orElse(null);
+        String startDate = bookingDTO.getStartDate();
 
-        BookingId bookingId = BookingId.builder()
-                .bizes(bizes)
-                .item(item)
-                .startDate(bookingDTO.getStartDate())
-                .hours(bookingDTO.getHours())
-                .build();
+        List<BookingEntity> oldBookingEntityList = bookingRepository.findAllByDTO(bizes, item, startDate);
+        bookingRepository.deleteAll(oldBookingEntityList);
 
-        BookingEntity bookingEntity = BookingEntity.builder()
-                .bookingId(bookingId)
-                .type(bookingDTO.getType())
-                .build();
+        for(BookingTimeData timeData : bookingDTO.getTimeDataList()) {
+            BookingId bookingId = BookingId.builder()
+                    .bizes(bizes)
+                    .item(item)
+                    .startDate(startDate)
+                    .hours(timeData.getHours())
+                    .build();
 
-        List<BookingEntity> oldBookingData = bookingRepository.findAllByDTO(bizes, item, bookingDTO.getStartDate());
-        bookingRepository.deleteAll(oldBookingData);
-        bookingRepository.save(bookingEntity);
+            BookingEntity bookingEntity = BookingEntity.builder()
+                    .bookingId(bookingId)
+                    .type(timeData.getType())
+                    .build();
+
+            bookingRepository.save(bookingEntity);
+        }
     }
+
 }
