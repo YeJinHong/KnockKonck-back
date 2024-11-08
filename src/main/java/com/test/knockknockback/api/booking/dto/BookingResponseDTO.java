@@ -28,4 +28,12 @@ public class BookingResponseDTO {
         this.timeDataList = timeDataList;
     }
 
+    @Builder
+    public BookingResponseDTO(String bizesNumber, String itemNumber, String startDate, LocalDateTime lastUpdatedAt, List<BookingTimeData> timeDataList) {
+        this.bizesNumber = bizesNumber;
+        this.itemNumber = itemNumber;
+        this.startDate = startDate;
+        this.lastUpdatedAt = lastUpdatedAt;
+        this.timeDataList = timeDataList;
+    }
 }

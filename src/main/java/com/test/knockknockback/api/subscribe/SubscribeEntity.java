@@ -7,11 +7,15 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Columns;
 
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "subscribe")
+@Table(
+        name = "subscribe",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"bizes_number", "itemNumber", "userName"})}
+)
 public class SubscribeEntity extends BaseEntity {
 
     @Id
@@ -19,6 +23,7 @@ public class SubscribeEntity extends BaseEntity {
     private Long id;
 
 //    @EmbeddedId
+    @Column(unique = true)
     private SubscribeId subscribeId;
     @Builder
     SubscribeEntity(BizesEntity bizes, ItemEntity item, String userName){

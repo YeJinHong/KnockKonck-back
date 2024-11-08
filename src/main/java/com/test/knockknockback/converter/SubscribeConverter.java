@@ -10,9 +10,9 @@ import java.util.List;
 public interface SubscribeConverter {
     @Named("E2D")
     @Mappings({
-            @Mapping(source = "userName", target = "subscribe.subscribeId.userName"),
-            @Mapping(source = "bizesNumber", target = "subscribe.subscribeId.bizesNumber"),
-            @Mapping(source = "itemNumber", target = "subscribe.subscribeId.itemNumber"),
+            @Mapping(target = "userName", source = "subscribe.subscribeId.userName"),
+            @Mapping(target = "bizesNumber", source = "subscribe.subscribeId.bizes.bizesNumber"),
+            @Mapping(target = "itemNumber", source = "subscribe.subscribeId.item.itemNumber"),
     })
     SubscribeResponseDTO toSubscribeDTO(SubscribeEntity subscribe);
     @IterableMapping(qualifiedByName = "E2D")

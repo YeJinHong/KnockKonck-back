@@ -6,5 +6,5 @@ import lombok.Data;
 public class SubscribeResponseDTO {
     private String userName;
     private String bizesNumber;
-    private String itemsNumber;
+    private String itemNumber;
 }
