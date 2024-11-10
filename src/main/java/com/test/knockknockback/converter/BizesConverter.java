@@ -13,8 +13,7 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface BizesConverter {
-    @Mapping(source = "mapUrl", target = "originMapUrl")
-    BizesResponseDTO toBizesResponseDTO(String mapUrl, BizesEntity bizesEntity);
+    BizesResponseDTO toBizesResponseDTO(BizesEntity bizes);
 
     @Mappings({
             @Mapping(source = "itemNumber", target = "itemNumber"),

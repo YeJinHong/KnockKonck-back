@@ -20,15 +20,6 @@ public class BookingResponseDTO {
     private List<BookingTimeData> timeDataList;
 
     @Builder
-    private BookingResponseDTO(CrawlingTimeRequestDTO crawlingTimeRequestDTO, LocalDateTime lastUpdatedAt, List<BookingTimeData> timeDataList){
-        this.bizesNumber = crawlingTimeRequestDTO.getBizesNumber();
-        this.itemNumber = crawlingTimeRequestDTO.getItemNumber();
-        this.startDate = crawlingTimeRequestDTO.getStartDate();
-        this.lastUpdatedAt = lastUpdatedAt;
-        this.timeDataList = timeDataList;
-    }
-
-    @Builder
     public BookingResponseDTO(String bizesNumber, String itemNumber, String startDate, LocalDateTime lastUpdatedAt, List<BookingTimeData> timeDataList) {
         this.bizesNumber = bizesNumber;
         this.itemNumber = itemNumber;
