@@ -6,6 +6,7 @@ import com.test.knockknockback.api.item.ItemEntity;
 import com.test.knockknockback.api.item.ItemRepository;
 import com.test.knockknockback.api.subscribe.dto.SubscribeResponseDTO;
 import com.test.knockknockback.converter.SubscribeConverter;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class SubscribeService {
         );
     }
 
+    @Transactional
     public void unsubscribe(Long subId){
         // TODO : 요청자와 구독정보 소유자 일치여부 확인 로직 필요
         subscribeRepository.deleteBySubId(subId);
