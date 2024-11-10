@@ -23,6 +23,9 @@ public class ItemEntity extends BaseEntity {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
+    @Column(name = "item_image_url")
+    private String itemImageUrl;
+
     @Column(name = "low_price")
     private String lowPrice;
 
@@ -37,9 +40,10 @@ public class ItemEntity extends BaseEntity {
     private BizesEntity bizes;
 
     @Builder
-    public ItemEntity(String itemNumber, String name, String lowPrice, String highPrice, String bookingUrl, BizesEntity bizes){
+    public ItemEntity(String itemNumber, String name, String itemImageUrl, String lowPrice, String highPrice, String bookingUrl, BizesEntity bizes){
         this.itemNumber = itemNumber;
         this.name = name;
+        this.itemImageUrl = itemImageUrl;
         this.lowPrice = lowPrice;
         this.highPrice = highPrice;
         this.bizes = bizes;

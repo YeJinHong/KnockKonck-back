@@ -9,6 +9,7 @@ public class ItemSO {
     private String bizesNumber;
     private String itemNumber;
     private String name;
+    private String itemImageUrl;
     private String lowPrice;
     private String highPrice;
     private String bookingUrl;

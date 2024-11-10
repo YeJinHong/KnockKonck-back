@@ -34,6 +34,7 @@ public class BizesService {
         BizesEntity bizesEntity = BizesEntity.builder()
                 .originMapUrl(bizesItemSO.getOriginMapUrl())
                 .placeNumber(bizesItemSO.getPlaceNumber())
+                .bizesImageUrl(bizesItemSO.getBizesImageUrl())
                 .bizesNumber(bizesItemSO.getBizesNumber())
                 .bizesName(bizesItemSO.getBizesName())
                 .address(bizesItemSO.getAddress())

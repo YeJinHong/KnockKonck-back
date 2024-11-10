@@ -25,6 +25,9 @@ public class BizesEntity extends BaseEntity {
     @Column(name = "bizes_number", nullable = false, unique = true)
     private String bizesNumber;
 
+    @Column(name = "bizes_image_url", nullable = false)
+    private String bizesImageUrl;
+
     @Column(name = "name", nullable = false, length = 100)
     private String bizesName;
 
@@ -32,8 +35,9 @@ public class BizesEntity extends BaseEntity {
     private String address;
 
     @Builder
-    BizesEntity(String originMapUrl, String bizesNumber, String placeNumber, String bizesName, String address){
+    BizesEntity(String originMapUrl, String bizesNumber, String placeNumber, String bizesImageUrl, String bizesName, String address){
         this.originMapUrl = originMapUrl;
+        this.bizesImageUrl = bizesImageUrl;
         this.bizesName = bizesName;
         this.bizesNumber = bizesNumber;
         this.address = address;

@@ -28,6 +28,7 @@ public class CrawlingService {
     final String ITEM_NAME_QUERY = ".tkK1g .QTWaA .lsthu";
     final String PRICE_LIST_QUERY = ".tkK1g .CTesk em";
     final String ITEM_BOOKING_URL_QUERY = ".tkK1g .QTWaA a";
+    final String ITEM_IMAGE_URL_QUERY = ".nqKzs a img";
     @Autowired
     public CrawlingService( TimeDataGenerator timeDataGenerator, ItemRepository itemRepository) {
         this.timeDataGenerator = timeDataGenerator;
@@ -88,6 +89,7 @@ public class CrawlingService {
             String highPrice = priceList.get(1).getText();
 
             String itemBookingUrl = (we.findElement(By.cssSelector(ITEM_BOOKING_URL_QUERY))).getAttribute("href");
+            String itemImageUrl = (we.findElement(By.cssSelector(ITEM_IMAGE_URL_QUERY))).getAttribute("src");
 
             itemBookingUrl = UrlModifier.removeQueryString(itemBookingUrl);
             String bizesNumber = UrlParamExtractor.getBizesNumberFromUrl(itemBookingUrl);
@@ -99,6 +101,7 @@ public class CrawlingService {
                     .itemNumber(itemNumber)
                     .bookingUrl(itemBookingUrl)
                     .name(itemName)
+                    .itemImageUrl(itemImageUrl)
                     .lowPrice(lowPrice)
                     .highPrice(highPrice)
                     .build();

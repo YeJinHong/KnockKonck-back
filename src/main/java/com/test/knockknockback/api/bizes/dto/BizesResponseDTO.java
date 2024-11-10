@@ -8,8 +8,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BizesResponseDTO {
     private String originMapUrl;
-    private String bizesNumber;
     private String placeNumber;
+    private String bizesNumber;
+    private String bizesImageUrl;
     private String bizesName;
     private String address;
 }

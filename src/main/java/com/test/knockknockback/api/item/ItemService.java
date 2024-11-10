@@ -25,6 +25,7 @@ public class ItemService {
                     ItemEntity.builder()
                             .itemNumber(itemSO.getItemNumber())
                             .name(itemSO.getName())
+                            .itemImageUrl(itemSO.getItemImageUrl())
                             .lowPrice(itemSO.getLowPrice())
                             .highPrice(itemSO.getHighPrice())
                             .bookingUrl(itemSO.getBookingUrl())
