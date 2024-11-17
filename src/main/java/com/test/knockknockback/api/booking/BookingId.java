@@ -26,14 +26,14 @@ public class BookingId implements Serializable {
     @Column(name = "startDate")
     private String startDate;
 
-    @Column(name = "hours")
-    private Integer hours;
+    @Column(name = "minutes")
+    private Integer minutes;
 
     @Builder
-    public BookingId(BizesEntity bizes, ItemEntity item, String startDate, Integer hours) {
+    public BookingId(BizesEntity bizes, ItemEntity item, String startDate, Integer minutes) {
         this.bizes = bizes;
         this.item = item;
         this.startDate = startDate;
-        this.hours = hours;
+        this.minutes = minutes;
     }
 }

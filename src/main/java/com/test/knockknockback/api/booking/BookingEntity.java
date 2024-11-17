@@ -16,11 +16,19 @@ public class BookingEntity extends BaseEntity {
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    private BookingType type;
+    private BookingState state;
+
+    @Column(name = "hours")
+    private int hours;
+
+    @Column(name = "diff")
+    private int diff;
 
     @Builder
-    private BookingEntity(BookingId bookingId, BookingType type){
+    private BookingEntity(BookingId bookingId, BookingState state, int hours, int diff){
         this.bookingId = bookingId;
-        this.type = type;
+        this.state = state;
+        this.hours = hours;
+        this.diff = diff;
     }
 }

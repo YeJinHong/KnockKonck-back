@@ -15,7 +15,7 @@ public interface BookingConverter {
 
 
     @Named("E2D")
-    @Mapping(target = "hours", source = "booking.bookingId.hours")
+    @Mapping(target = "minutes", source = "booking.bookingId.minutes")
     BookingTimeData toBookingTimeData(BookingEntity booking);
 
     @IterableMapping(qualifiedByName = "E2D")
@@ -26,5 +26,5 @@ public interface BookingConverter {
            @Mapping(target = "itemNumber", source = "item.itemNumber"),
 
     })
-    BookingResponseDTO toBookingResponseDTO(BizesEntity bizes, ItemEntity item, String startDate, List<BookingTimeData> timeDataList, LocalDateTime lastUpdatedAt);
+    BookingResponseDTO toBookingResponseDTO(BizesEntity bizes, ItemEntity item, String startDate, List<BookingTimeData> timeDataList, String lastUpdatedAt);
 }

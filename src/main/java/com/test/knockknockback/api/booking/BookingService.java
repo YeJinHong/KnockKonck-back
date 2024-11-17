@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -36,12 +37,14 @@ public class BookingService {
                     .bizes(bizes)
                     .item(item)
                     .startDate(startDate)
-                    .hours(timeData.getHours())
+                    .minutes(timeData.getMinutes())
                     .build();
 
             BookingEntity bookingEntity = BookingEntity.builder()
                     .bookingId(bookingId)
-                    .type(timeData.getType())
+                    .state(timeData.getState())
+                    .hours(timeData.getHours())
+                    .diff(timeData.getDiff())
                     .build();
 
             bookingRepository.save(bookingEntity);
@@ -55,7 +58,8 @@ public class BookingService {
         String startDate = bookingRequestDTO.getStartDate();
         List<BookingEntity> bookingEntityList = bookingRepository.findAllByDTO(bizes, item, startDate);
 
-        LocalDateTime lastUpdatedAt = bookingEntityList.isEmpty()? null : bookingEntityList.get(0).getUpdatedAt();
+        String lastUpdatedAt = bookingEntityList.isEmpty()?
+                null : bookingEntityList.get(0).getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         List<BookingTimeData> timeDataList = bookingConverter.toBookingTimeDataList(bookingEntityList);
 

@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum BookingType {
-    HALF("half"),
-    FULL("full");
+public enum BookingState {
+    ABLE("able"),
+    DISABLE("disable");
 
     private String description;
 }
