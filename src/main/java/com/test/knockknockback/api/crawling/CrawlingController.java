@@ -5,10 +5,7 @@ import com.test.knockknockback.api.booking.BookingService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class CrawlingController {
     private final BookingService bookingService;
 
     // 크롤링 정상 동작 확인 완료
-    @PatchMapping("/time-data")
+    @PutMapping("/time-data")
     public ResponseEntity<?> crawlingItemTimeData(
             @RequestBody CrawlingTimeRequestDTO crawlingTimeRequestDTO
     ){
