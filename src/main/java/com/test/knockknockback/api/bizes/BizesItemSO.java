@@ -23,7 +23,7 @@ public class BizesItemSO {
     public BizesItemSO(String originMapUrl, String placeNumber, WebDriver driver){
         this.originMapUrl = originMapUrl;
         this.placeNumber = placeNumber;
-        this.bizesImageUrl = driver.findElement(By.cssSelector("place_thumb QX0J7 > img")).getAttribute("src");
+        this.bizesImageUrl = driver.findElement(By.cssSelector(".place_thumb > img")).getAttribute("src");
         List<WebElement> elementList = driver.findElements(By.cssSelector(".yxkiA"));
         WebElement element = elementList.get(2).findElement(By.cssSelector("a"));
         setBizesName(element.getAttribute("data-line-title"));
