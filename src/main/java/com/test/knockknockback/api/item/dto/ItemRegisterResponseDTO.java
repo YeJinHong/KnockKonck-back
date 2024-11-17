@@ -9,5 +9,6 @@ import lombok.*;
 public class ItemRegisterResponseDTO {
     private String itemNumber;
     private String ItemName;
+    private String itemImageUrl;
     private String bookingUrl;
 }

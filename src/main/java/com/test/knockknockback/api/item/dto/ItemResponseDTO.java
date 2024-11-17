@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ItemResponseDTO {
+    private String bizesName;
     private String bizesNumber;
     private String address;
     private String itemNumber;

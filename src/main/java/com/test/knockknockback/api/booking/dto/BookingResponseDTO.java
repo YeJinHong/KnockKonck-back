@@ -16,11 +16,11 @@ public class BookingResponseDTO {
     private String bizesNumber;
     private String itemNumber;
     private String startDate;
-    private LocalDateTime lastUpdatedAt;
+    private String lastUpdatedAt;
     private List<BookingTimeData> timeDataList;
 
     @Builder
-    public BookingResponseDTO(String bizesNumber, String itemNumber, String startDate, LocalDateTime lastUpdatedAt, List<BookingTimeData> timeDataList) {
+    public BookingResponseDTO(String bizesNumber, String itemNumber, String startDate, String lastUpdatedAt, List<BookingTimeData> timeDataList) {
         this.bizesNumber = bizesNumber;
         this.itemNumber = itemNumber;
         this.startDate = startDate;

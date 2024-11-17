@@ -9,6 +9,7 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface ItemConverter {
     @Mappings({
+            @Mapping(target = "bizesName", source = "item.bizes.bizesName"),
             @Mapping(target = "bizesNumber", source = "item.bizes.bizesNumber"),
             @Mapping(target = "address", source = "item.bizes.address"),
             @Mapping(target = "itemName", source = "item.name")

@@ -13,6 +13,7 @@ public class BizesRegisterResponseDTO {
     private String placeNumber;
     private String bizesNumber;
     private String bizesName;
+    private String bizesImageUrl;
     private String address;
     private List<ItemRegisterResponseDTO> itemList;
 }
