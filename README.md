@@ -6,8 +6,10 @@
 백엔드 레포지토리
 
 ### 주요 기능
+- React 활용 페이지 및 컴포넌트 구현
 - Selenum을 활용한 타겟 사이트 정보 크롤링
-- JPA 활용 
+- JPA 활용 데이터베이스 구축
+  
 ## 2. 사용 스택
 ### Frontend
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">   
