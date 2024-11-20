@@ -2,11 +2,15 @@ package com.test.knockknockback.api.bizes;
 
 import com.test.knockknockback.api.bizes.dto.BizesResponseDTO;
 import com.test.knockknockback.api.crawling.UrlParamExtractor;
+import com.test.knockknockback.api.item.ItemEntity;
+import com.test.knockknockback.api.item.ItemRepository;
 import com.test.knockknockback.converter.BizesConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,19 +18,24 @@ public class BizesService {
 
     private final BizesRepsitory bizesRepsitory;
     private final BizesConverter bizesConverter;
+    private final ItemRepository itemRepository;
 
     public BizesResponseDTO findBizesByMapUrl(String mapUrl){
         String placeNumber = UrlParamExtractor.getPlaceNumberFromUrl(mapUrl);
         BizesEntity bizesEntity = bizesRepsitory.findByPlaceNumber(placeNumber).orElse(null);
-        return bizesConverter.toBizesResponseDTO(bizesEntity);
+        if(bizesEntity == null)
+            return null;
+
+        BizesResponseDTO bizesResponseDTO = bizesConverter.toBizesResponseDTO(bizesEntity);
+        List<ItemEntity> itemEntityList =  itemRepository.findByBizesNumber(bizesEntity.getBizesNumber());
+        bizesResponseDTO.setItemList(bizesConverter.toItemRegisterResponseDTOList(itemEntityList));
+
+        return bizesResponseDTO;
     }
 
     public Page<BizesResponseDTO> findBizes(String bizesName, Pageable pageable){
 
-        System.out.println("bizesName : "+bizesName);
         Page<BizesEntity> bizesEntities = bizesRepsitory.findBizesEntityByBizesNameContaining(bizesName, pageable);
-        System.out.println(bizesEntities.getSize());
-        System.out.println(bizesEntities.getContent());
         return bizesEntities.map(bizesConverter::toBizesResponseDTO);
     }
 

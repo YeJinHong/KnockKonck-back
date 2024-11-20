@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ItemRegisterResponseDTO {
     private String itemNumber;
-    private String ItemName;
+    private String itemName;
     private String itemImageUrl;
     private String bookingUrl;
 }

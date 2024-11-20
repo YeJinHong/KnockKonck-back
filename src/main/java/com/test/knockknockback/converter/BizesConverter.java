@@ -4,12 +4,12 @@ import com.test.knockknockback.api.bizes.BizesEntity;
 import com.test.knockknockback.api.bizes.BizesItemSO;
 import com.test.knockknockback.api.bizes.dto.BizesRegisterResponseDTO;
 import com.test.knockknockback.api.bizes.dto.BizesResponseDTO;
+import com.test.knockknockback.api.item.ItemEntity;
 import com.test.knockknockback.api.item.ItemSO;
 import com.test.knockknockback.api.item.dto.ItemRegisterResponseDTO;
-import org.mapstruct.IterableMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BizesConverter {
@@ -27,4 +27,12 @@ public interface BizesConverter {
             @Mapping(source = "bizesItemSO.itemList", target="itemList")
     })
     BizesRegisterResponseDTO toBizesRegisterResponseDTO(String mapUrl, BizesItemSO bizesItemSO);
+
+
+    @Named("E2D")
+    @Mapping(target="itemName", source="name")
+    ItemRegisterResponseDTO toItemRegisterResponseDTO(ItemEntity itemEntity);
+
+    @IterableMapping(qualifiedByName = "E2D")
+    List<ItemRegisterResponseDTO> toItemRegisterResponseDTOList(List<ItemEntity> itemEntityList);
 }
