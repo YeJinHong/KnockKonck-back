@@ -24,7 +24,7 @@
 ## 3. 시스템 아키텍쳐
 ![knockknock_system_architecture drawio](https://github.com/user-attachments/assets/2db0f7a3-333b-432e-b0d0-483e42ae215a)
 
-## 3. 사용자 인터페이스
+## 4. 사용자 인터페이스
 ### 예약 정보 보기
 <img src="https://github.com/user-attachments/assets/e3eadb52-366a-4ae6-8e03-3ff2633ae8e0" width = 50%>
 
