@@ -9,6 +9,9 @@ import jakarta.transaction.Transactional;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +40,14 @@ public class CrawlingService {
 
     public BookingDTO getBookingTimeData(CrawlingTimeRequestDTO crawlingTimeRequestDTO){
         WebDriver driver = WebDriverUtil.getChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         String bookingItemUrl = itemRepository.findBookingUrlByBizesNumberAndItemNumber(
                 crawlingTimeRequestDTO.getBizesNumber(), crawlingTimeRequestDTO.getItemNumber()
         );
 
         driver.get(bookingItemUrl + "?startDate="+crawlingTimeRequestDTO.getStartDate());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(TIME_QUERY)));
 
         List<WebElement> timeListElement = driver.findElements(By.cssSelector(TIME_QUERY));
 
@@ -57,9 +61,10 @@ public class CrawlingService {
     @Transactional
     public BizesItemSO crawlingBizesItemList(String mapUrl){
         WebDriver driver = WebDriverUtil.getChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         driver.get(mapUrl);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(IFRAME_QUERY)));
         driver.switchTo().frame(driver.findElement(By.cssSelector(IFRAME_QUERY)));
 
         // 1. 사업체 정보 추출 - bizesNumber는 아이템 정보에서 추가
@@ -67,11 +72,11 @@ public class CrawlingService {
 
         // 예약 버튼을 클릭한다.
         driver.findElement(By.cssSelector(BOOKING_TAB_QUERY)).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
 
         // 현재 프레임에서 상위 프레임으로 이동한다
         driver.switchTo().defaultContent();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(IFRAME_QUERY)));
 
         // 상세정보 프레임에서 예약 정보가 들어있는 곳으로 이동한다.
         driver.switchTo().frame(driver.findElement(By.cssSelector(IFRAME_QUERY)));
