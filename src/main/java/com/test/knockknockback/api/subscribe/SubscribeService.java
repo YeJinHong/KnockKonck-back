@@ -6,11 +6,15 @@ import com.test.knockknockback.api.item.ItemEntity;
 import com.test.knockknockback.api.item.ItemRepository;
 import com.test.knockknockback.api.subscribe.dto.SubscribeResponseDTO;
 import com.test.knockknockback.converter.SubscribeConverter;
+import com.test.knockknockback.util.exception.CustomException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.test.knockknockback.util.exception.ErrorCode.BIZES_NOT_EXIST;
+import static com.test.knockknockback.util.exception.ErrorCode.ITEM_NOT_EXIST;
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +25,12 @@ public class SubscribeService {
     private final SubscribeConverter subscribeConverter;
 
     public void registerSubs(SubscribeDTO subscribeDTO){
-        BizesEntity bizes = bizesRepository.findByBizesNumber(subscribeDTO.getBizesNumber()).orElse(null);
-        ItemEntity item = itemRepository.findByItemNumber(subscribeDTO.getItemNumber()).orElse(null);
-
+        BizesEntity bizes = bizesRepository.findByBizesNumber(subscribeDTO.getBizesNumber()).orElseThrow(
+                () -> CustomException.of(BIZES_NOT_EXIST)
+        );
+        ItemEntity item = itemRepository.findByItemNumber(subscribeDTO.getItemNumber()).orElseThrow(
+                () -> CustomException.of(ITEM_NOT_EXIST)
+        );
         subscribeRepository.save(
                 SubscribeEntity.builder()
                         .userName(subscribeDTO.getUserName())

@@ -12,6 +12,7 @@ public enum ErrorCode {
     /* 400 BAD_REQUEST : 클라이언트 요청이 유효하지 않아 더 이상 작업을 진행하지 않는 경우 */
     INVALID_REQUEST(BAD_REQUEST, "올바르지 않은 요청입니다."),
     BIZES_NOT_EXIST(BAD_REQUEST, "해당하는 bizes 정보가 없습니다."),
+    ITEM_NOT_EXIST(BAD_REQUEST, "해당하는 item 정보가 없습니다."),
 
     /* 401 Unauthorized : 클라이언트가 요청한 리소스에 대한 인증 정보가 없거나 잘못된 경우 */
 

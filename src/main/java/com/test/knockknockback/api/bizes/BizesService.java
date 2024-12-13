@@ -5,12 +5,15 @@ import com.test.knockknockback.api.crawling.UrlParamExtractor;
 import com.test.knockknockback.api.item.ItemEntity;
 import com.test.knockknockback.api.item.ItemRepository;
 import com.test.knockknockback.converter.BizesConverter;
+import com.test.knockknockback.util.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.test.knockknockback.util.exception.ErrorCode.BIZES_NOT_EXIST;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +25,9 @@ public class BizesService {
 
     public BizesResponseDTO findBizesByMapUrl(String mapUrl){
         String placeNumber = UrlParamExtractor.getPlaceNumberFromUrl(mapUrl);
-        BizesEntity bizesEntity = bizesRepsitory.findByPlaceNumber(placeNumber).orElse(null);
-        if(bizesEntity == null)
-            return null;
+        BizesEntity bizesEntity = bizesRepsitory.findByPlaceNumber(placeNumber).orElseThrow(
+                () -> CustomException.of(BIZES_NOT_EXIST)
+        );
 
         BizesResponseDTO bizesResponseDTO = bizesConverter.toBizesResponseDTO(bizesEntity);
         List<ItemEntity> itemEntityList =  itemRepository.findByBizesNumber(bizesEntity.getBizesNumber());
