@@ -32,6 +32,8 @@ public class CrawlingService {
     final String PRICE_LIST_QUERY = ".tkK1g .CTesk em";
     final String ITEM_BOOKING_URL_QUERY = ".tkK1g .QTWaA a";
     final String ITEM_IMAGE_URL_QUERY = ".nqKzs a img";
+
+    final Duration TIME_LIMIT = Duration.ofSeconds(3);
     @Autowired
     public CrawlingService( TimeDataGenerator timeDataGenerator, ItemRepository itemRepository) {
         this.timeDataGenerator = timeDataGenerator;
@@ -40,7 +42,7 @@ public class CrawlingService {
 
     public BookingDTO getBookingTimeData(CrawlingTimeRequestDTO crawlingTimeRequestDTO){
         WebDriver driver = WebDriverUtil.getChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, TIME_LIMIT);
 
         String bookingItemUrl = itemRepository.findBookingUrlByBizesNumberAndItemNumber(
                 crawlingTimeRequestDTO.getBizesNumber(), crawlingTimeRequestDTO.getItemNumber()
@@ -61,7 +63,7 @@ public class CrawlingService {
     @Transactional
     public BizesItemSO crawlingBizesItemList(String mapUrl){
         WebDriver driver = WebDriverUtil.getChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, TIME_LIMIT);
 
         driver.get(mapUrl);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(IFRAME_QUERY)));
@@ -72,7 +74,6 @@ public class CrawlingService {
 
         // 예약 버튼을 클릭한다.
         driver.findElement(By.cssSelector(BOOKING_TAB_QUERY)).click();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
 
         // 현재 프레임에서 상위 프레임으로 이동한다
         driver.switchTo().defaultContent();
